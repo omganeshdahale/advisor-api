@@ -11,4 +11,9 @@ urlpatterns = [
         views.AdvisorListView.as_view(),
         name="advisor_list",
     ),
+    path(
+        "user/<int:user_pk>/advisor/<int:advisor_pk>/",
+        views.BookingCreateView.as_view(),
+        name="booking_create",
+    ),
 ]
