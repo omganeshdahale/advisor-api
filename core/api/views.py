@@ -15,3 +15,8 @@ class AdvisorCreateView(generics.CreateAPIView):
     model = Advisor
     serializer_class = AdvisorSerializer
     permission_classes = (AllowAny,)
+
+
+class AdvisorListView(generics.ListAPIView):
+    queryset = Advisor.objects.all()
+    serializer_class = AdvisorSerializer
