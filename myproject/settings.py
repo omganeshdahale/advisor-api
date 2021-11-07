@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "core",
 ]
 
+AUTH_USER_MODEL = "core.User"
+
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
