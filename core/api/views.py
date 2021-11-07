@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from ..models import Advisor, Booking
-from .serializers import UserSerializer, AdvisorSerializer
+from .serializers import UserSerializer, AdvisorSerializer, BookingSerializer
 
 User = get_user_model()
 
@@ -31,3 +31,10 @@ class BookingCreateView(APIView):
         advisor = get_object_or_404(Advisor, pk=advisor_pk)
         Booking.objects.create(user=user, advisor=advisor, time=request.data["time"])
         return Response()
+
+
+class BookingListView(generics.ListAPIView):
+    serializer_class = BookingSerializer
+
+    def get_queryset(self):
+        return Booking.objects.filter(user__pk=self.kwargs["user_pk"])

@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from ..models import Advisor
+from ..models import Advisor, Booking
 
 UserModel = get_user_model()
 
@@ -33,3 +33,11 @@ class AdvisorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advisor
         fields = ("id", "name", "photo_url")
+
+
+class BookingSerializer(serializers.ModelSerializer):
+    advisor = AdvisorSerializer(read_only=True)
+
+    class Meta:
+        model = Booking
+        fields = ("id", "time", "advisor")
